@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pigalukuadmin/screens/home_screen.dart';
+import 'package:pigalukuadmin/screens/login_screen.dart';
 import 'package:pigalukuadmin/screens/splash_screen.dart';
 import 'package:pigalukuadmin/secrets.dart';
 
@@ -31,6 +33,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple
       ),
       home: const SplashScreen(),
+      routes: {
+        HomeScreen.id:(context) => const HomeScreen(),
+        LoginScreen.id:(context) => const LoginScreen(),
+        SplashScreen.id:(context) => const SplashScreen()
+      },
     );
   }
 }

@@ -8,6 +8,7 @@ import '../services/firebase_services.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const String id = "login-screen";
   const LoginScreen({super.key});
 
 
@@ -17,9 +18,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   static final configurations = Configurations();
-
-
-
   final Future<FirebaseApp> _initialization = Firebase.initializeApp(
       options: FirebaseOptions(
           apiKey: configurations.apiKey,
@@ -28,13 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
           projectId: configurations.projectId
       )
   );
-
-
   final _formKey = GlobalKey<FormState>();
-
   final FirebaseServices _services = FirebaseServices();
-  String? username;
-  String? password;
+  final _usernameTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
 
 
 
@@ -47,41 +42,53 @@ class _LoginScreenState extends State<LoginScreen> {
       context,
     );
 
-    Future<void>login() async{
+    _login({username, password}) async{
       progressDialog.show();
-      _services.getAdminCredentials().then((value) async {
-        for (var element in value.docs) {
-          if (element.get("username") == username){
-            if (element.get("password") == password) {
-              UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
-              progressDialog.hide();
-              if(userCredential.user?.uid != null) {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
-                return;
-              } else {
+      _services.getAdminCredentials(username).then((value) async{
+        print(username);
+        print(value);
+        if(value.exists){
+          if(value["username"] == username){
+            if(value["password"] == password){
+              try{
+                UserCredential? userCredential = await FirebaseAuth.instance.signInAnonymously();
+                if (userCredential.user?.uid != null) {
+                  progressDialog.hide();
+                  Navigator.pushReplacementNamed(context, HomeScreen.id);
+                }
+              } catch (e) {
+                progressDialog.hide();
                 _showMyDialog(
                     title: "Login",
-                    message: "Login failed"
+                    message: e.toString()
                 );
               }
+              return;
             } else {
               progressDialog.hide();
               _showMyDialog(
-                  title: "Password is incorrect",
-                  message: "The password you have entered is incorrect. Please try again"
+                  title: "Incorrect password",
+                  message: "The password you have entered is incorrect"
               );
+              return;
             }
-          } else {
+          }
+          else {
             progressDialog.hide();
             _showMyDialog(
                 title: "Invalid username",
-                message: "The username you have entered is invalid. Please try again"
+                message: "The username you have entered is incorrect"
             );
           }
+        } else {
+          progressDialog.hide();
+          _showMyDialog(
+            title: "Login",
+            message: "Can't log in"
+          );
         }
       });
     }
-
 
 
     return Scaffold(
@@ -154,13 +161,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextFormField(
+                                      controller: _usernameTextController,
                                       validator: (value){
                                         if(value!.isEmpty){
                                           return "Please enter your username";
                                         }
-                                        setState(() {
-                                          username = value;
-                                        });
                                         return null;
                                       },
                                       decoration: InputDecoration(
@@ -181,6 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextFormField(
+                                      controller: _passwordTextController,
                                       validator: (value){
                                         if(value!.isEmpty){
                                           return "Please enter your password";
@@ -188,9 +194,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         if (value.length < 6) {
                                           return "Your password is too short. Minimum 6 characters";
                                         }
-                                        setState(() {
-                                          password = value;
-                                        });
                                         return null;
                                       },
                                       obscureText: true,
@@ -212,7 +215,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ElevatedButton(
                                       onPressed: () {
                                         if (_formKey.currentState!.validate()) {
-                                          login();
+                                          _login(
+                                            username: _usernameTextController.text,
+                                            password: _passwordTextController.text
+                                          );
                                         }
                                       },
                                       child: const Text("Login")

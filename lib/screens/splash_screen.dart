@@ -6,6 +6,7 @@ import 'package:pigalukuadmin/screens/home_screen.dart';
 import 'package:pigalukuadmin/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String id = "splash-screen";
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -20,10 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
           .authStateChanges()
           .listen((User? user) {
         if (user == null) {
-          print("Hi");
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
         } else {
-          print("Hello");
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
         }
       });
