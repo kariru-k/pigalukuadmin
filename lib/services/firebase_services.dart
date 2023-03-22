@@ -7,7 +7,7 @@ class FirebaseServices{
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference banners = FirebaseFirestore.instance.collection("slider");
-
+  CollectionReference vendors = FirebaseFirestore.instance.collection("vendors");
 
   Future<DocumentSnapshot>getAdminCredentials(id){
     var result = FirebaseFirestore.instance.collection("admin").doc(id).get();

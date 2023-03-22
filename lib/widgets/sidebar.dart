@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:pigalukuadmin/screens/vendor_screen.dart';
 
 import '../screens/admin_users.dart';
 import '../screens/category_screen.dart';
@@ -40,6 +41,11 @@ class SideBarWidget {
           title: 'Banners',
           route: BannerScreen.id,
           icon: CupertinoIcons.photo,
+        ),
+        AdminMenuItem(
+          title: 'Vendors',
+          route: VendorScreen.id,
+          icon: CupertinoIcons.money_dollar_circle_fill,
         ),
         AdminMenuItem(
             title: 'Categories',

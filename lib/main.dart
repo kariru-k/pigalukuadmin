@@ -9,6 +9,7 @@ import 'package:pigalukuadmin/screens/notification_screen.dart';
 import 'package:pigalukuadmin/screens/order_screen.dart';
 import 'package:pigalukuadmin/screens/settings_screen.dart';
 import 'package:pigalukuadmin/screens/splash_screen.dart';
+import 'package:pigalukuadmin/screens/vendor_screen.dart';
 import 'package:pigalukuadmin/secrets.dart';
 
 void main() async{
@@ -44,12 +45,13 @@ class MyApp extends StatelessWidget {
         HomeScreen.id:(context) => const HomeScreen(),
         LoginScreen.id:(context) => const LoginScreen(),
         SplashScreen.id:(context) => const SplashScreen(),
-        BannerScreen.id:(context) => const BannerScreen(),
+        BannerScreen.id:(context) => BannerScreen(),
         CategoryScreen.id:(context) => const CategoryScreen(),
         OrderScreen.id:(context) => const OrderScreen(),
         NotificationScreen.id:(context) => const NotificationScreen(),
         AdminUsers.id:(context) => const AdminUsers(),
-        SettingScreen.id:(context) => const SettingScreen()
+        SettingScreen.id:(context) => const SettingScreen(),
+        VendorScreen.id:(context) => const VendorScreen()
       },
     );
   }

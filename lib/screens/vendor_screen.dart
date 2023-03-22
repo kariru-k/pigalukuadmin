@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:pigalukuadmin/widgets/banner_upload_widget.dart';
-import 'package:pigalukuadmin/widgets/banner_widget.dart';
+import 'package:pigalukuadmin/widgets/vendor_datatable_widget.dart';
 
 import '../widgets/sidebar.dart';
 
-class BannerScreen extends StatelessWidget {
-  static const String id = "banner-screen";
-  final SideBarWidget _sideBar = SideBarWidget();
+class VendorScreen extends StatefulWidget {
+  static const String id = "vendor-screen";
+  const VendorScreen({Key? key}) : super(key: key);
 
   @override
+  State<VendorScreen> createState() => _VendorScreenState();
+}
+
+class _VendorScreenState extends State<VendorScreen> {
+  @override
   Widget build(BuildContext context) {
+    SideBarWidget _sideBar = SideBarWidget();
+
     return AdminScaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -20,7 +26,7 @@ class BannerScreen extends StatelessWidget {
             color: Colors.white
         ),
       ),
-      sideBar: _sideBar.SideBarMenus(context, id),
+      sideBar: _sideBar.SideBarMenus(context, VendorScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
@@ -29,23 +35,15 @@ class BannerScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               Text(
-                'Banners',
+                "Manage vendors",
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 36,
+                  fontSize: 36
                 ),
               ),
-              Text(
-                  "Add / Delete Home Screen Banner Images"
-              ),
-              Divider(
-                thickness: 5,
-              ),
-              BannerWidget(),
-              Divider(
-                thickness: 5,
-              ),
-              BannerUploadWidget()
+              Text("Manage all the vendors activities"),
+              Divider(thickness: 5,),
+              VendorDataTable()
             ],
           ),
         ),
