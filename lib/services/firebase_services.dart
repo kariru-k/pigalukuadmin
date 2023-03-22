@@ -88,5 +88,11 @@ class FirebaseServices{
     );
   }
 
+  updateVendorStatus({id, status, field}) async{
+    vendors.doc(id).update({
+      field : status ? false : true
+    });
+  }
+
 
 }

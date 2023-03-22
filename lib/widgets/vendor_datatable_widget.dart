@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pigalukuadmin/services/firebase_services.dart';
 
@@ -47,7 +48,7 @@ class VendorDataTable extends StatelessWidget {
                 DataColumn(label: Text("Email")),
                 DataColumn(label: Text("View details")),
               ],
-              rows: _vendorDetailsRows(snapshot.data) as List<DataRow>,
+              rows: _vendorDetailsRows(snapshot.data, _services) as List<DataRow>,
               showBottomBorder: true,
               dataRowHeight: 80,
               headingRowColor: MaterialStateProperty.all(Colors.grey[200]),
@@ -58,21 +59,33 @@ class VendorDataTable extends StatelessWidget {
       },
     );
   }
-  List<DataRow>? _vendorDetailsRows(QuerySnapshot? snapshot){
+  List<DataRow>? _vendorDetailsRows(QuerySnapshot? snapshot,FirebaseServices services){
     List<DataRow>? newList = snapshot?.docs.map((DocumentSnapshot document) {
       return DataRow(
           cells: [
             DataCell(
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      services.updateVendorStatus(
+                        id: document['uid'],
+                        field: "accVerified",
+                        status: document["accVerified"]
+                      );
+                    },
                     icon: document['accVerified']
                         ? const Icon(Icons.check_circle, color: Colors.green,)
-                        : const Icon(Icons.check_circle, color: Colors.red,)
+                        : const Icon(CupertinoIcons.xmark_octagon, color: Colors.red,)
                 )
             ),
             DataCell(
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      services.updateVendorStatus(
+                          id: document['uid'],
+                          field: "isTopPicked",
+                          status: document["isTopPicked"]
+                      );
+                    },
                     icon: document['isTopPicked']
                         ?
                     const Icon(
@@ -80,7 +93,8 @@ class VendorDataTable extends StatelessWidget {
                       color: Colors.green,
                     ) :
                     const Icon(
-                      null
+                      CupertinoIcons.xmark_octagon,
+                      color: Colors.red,
                     )
                 )
             ),

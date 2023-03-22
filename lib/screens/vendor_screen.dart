@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:pigalukuadmin/widgets/vendor_datatable_widget.dart';
+import 'package:pigalukuadmin/widgets/vendor_filter_widget.dart';
 
 import '../widgets/sidebar.dart';
 
@@ -43,7 +44,10 @@ class _VendorScreenState extends State<VendorScreen> {
               ),
               Text("Manage all the vendors activities"),
               Divider(thickness: 5,),
-              VendorDataTable()
+              VendorFilterWidget(),
+              Divider(thickness: 5,),
+              VendorDataTable(),
+              Divider(thickness: 5,),
             ],
           ),
         ),
