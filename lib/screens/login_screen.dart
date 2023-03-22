@@ -23,7 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
           apiKey: configurations.apiKey,
           appId: configurations.appId,
           messagingSenderId: configurations.messagingSenderId,
-          projectId: configurations.projectId
+          storageBucket: configurations.storageBucket,
+          projectId: configurations.projectId,
       )
   );
   final _formKey = GlobalKey<FormState>();
@@ -58,33 +59,37 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               } catch (e) {
                 progressDialog.hide();
-                _showMyDialog(
+                _services.showMyDialog(
                     title: "Login",
-                    message: e.toString()
+                    context: context,
+                    message: e.toString(),
                 );
               }
               return;
             } else {
               progressDialog.hide();
-              _showMyDialog(
+              _services.showMyDialog(
                   title: "Incorrect password",
-                  message: "The password you have entered is incorrect"
+                  message: "The password you have entered is incorrect",
+                  context: context
               );
               return;
             }
           }
           else {
             progressDialog.hide();
-            _showMyDialog(
+            _services.showMyDialog(
                 title: "Invalid username",
-                message: "The username you have entered is incorrect"
+                message: "The username you have entered is incorrect",
+                context: context
             );
           }
         } else {
           progressDialog.hide();
-          _showMyDialog(
+          _services.showMyDialog(
             title: "Login",
-            message: "Can't log in"
+            message: "Can't log in",
+            context: context
           );
         }
       });
@@ -242,34 +247,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
           }
         )
-    );
-  }
-
-  Future<void> _showMyDialog({title, message}) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(message),
-                const Text("Please try again")
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

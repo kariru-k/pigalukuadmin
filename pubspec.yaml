@@ -43,6 +43,9 @@ dependencies:
   progress_dialog_null_safe: ^1.0.7
   firebase_auth: ^4.3.0
   flutter_admin_scaffold: ^1.1.2
+  firebase_storage: ^11.0.16
+  image_picker_web: ^3.0.0+1
+  cross_file: ^0.3.3+4
 
 dev_dependencies:
   flutter_test:
