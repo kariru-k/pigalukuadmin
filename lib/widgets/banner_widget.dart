@@ -10,11 +10,11 @@ class BannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    FirebaseServices _services = FirebaseServices();
+    FirebaseServices services = FirebaseServices();
 
 
     return StreamBuilder<QuerySnapshot>(
-      stream: _services.banners.snapshots(),
+      stream: services.banners.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Text('Something went wrong');
@@ -26,7 +26,7 @@ class BannerWidget extends StatelessWidget {
           );
         }
 
-        return Container(
+        return SizedBox(
           width: MediaQuery.of(context).size.width,
           height: 300,
           child: ScrollConfiguration(
@@ -65,7 +65,7 @@ class BannerWidget extends StatelessWidget {
                           child: CircleAvatar(
                             child: IconButton(
                               onPressed: () {
-                                _services.confirmDeleteDialog(
+                                services.confirmDeleteDialog(
                                   context: context,
                                   message: "Are you sure you want to delete image",
                                   title: "Delete Banner Image?",

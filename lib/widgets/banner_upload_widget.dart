@@ -58,7 +58,7 @@ class _BannerUploadWidgetState extends State<BannerUploadWidget> {
               message: "Saved Banner Image"
           );
         });
-      };
+      }
     }
 
 
@@ -132,7 +132,6 @@ class _BannerUploadWidgetState extends State<BannerUploadWidget> {
                 visible: visible ? false : true,
                 child: ElevatedButton(
                     onPressed: () {
-                      print("object");
                       showWidget();
                     },
                     child: const Text("Add Banner")

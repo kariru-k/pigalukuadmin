@@ -9,6 +9,8 @@ class BannerScreen extends StatelessWidget {
   static const String id = "banner-screen";
   final SideBarWidget _sideBar = SideBarWidget();
 
+  BannerScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AdminScaffold(

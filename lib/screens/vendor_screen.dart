@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:pigalukuadmin/widgets/vendor_datatable_widget.dart';
-import 'package:pigalukuadmin/widgets/vendor_filter_widget.dart';
-
 import '../widgets/sidebar.dart';
 
 class VendorScreen extends StatefulWidget {
@@ -16,7 +14,7 @@ class VendorScreen extends StatefulWidget {
 class _VendorScreenState extends State<VendorScreen> {
   @override
   Widget build(BuildContext context) {
-    SideBarWidget _sideBar = SideBarWidget();
+    SideBarWidget sideBar = SideBarWidget();
 
     return AdminScaffold(
       backgroundColor: Colors.white,
@@ -27,7 +25,7 @@ class _VendorScreenState extends State<VendorScreen> {
             color: Colors.white
         ),
       ),
-      sideBar: _sideBar.SideBarMenus(context, VendorScreen.id),
+      sideBar: sideBar.SideBarMenus(context, VendorScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
@@ -43,8 +41,6 @@ class _VendorScreenState extends State<VendorScreen> {
                 ),
               ),
               Text("Manage all the vendors activities"),
-              Divider(thickness: 5,),
-              VendorFilterWidget(),
               Divider(thickness: 5,),
               VendorDataTable(),
               Divider(thickness: 5,),

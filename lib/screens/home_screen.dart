@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:pigalukuadmin/widgets/sidebar.dart';
@@ -11,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    SideBarWidget _sideBar = SideBarWidget();
+    SideBarWidget sideBar = SideBarWidget();
     
     
     
@@ -25,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           color: Colors.white
         ),
       ),
-      sideBar: _sideBar.SideBarMenus(context, HomeScreen.id),
+      sideBar: sideBar.SideBarMenus(context, HomeScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

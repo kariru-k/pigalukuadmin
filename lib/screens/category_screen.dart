@@ -10,7 +10,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    SideBarWidget _sideBar = SideBarWidget();
+    SideBarWidget sideBar = SideBarWidget();
 
 
 
@@ -24,7 +24,7 @@ class CategoryScreen extends StatelessWidget {
             color: Colors.white
         ),
       ),
-      sideBar: _sideBar.SideBarMenus(context, CategoryScreen.id),
+      sideBar: sideBar.SideBarMenus(context, CategoryScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

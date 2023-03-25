@@ -10,7 +10,7 @@ class AdminUsers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    SideBarWidget _sideBar = SideBarWidget();
+    SideBarWidget sideBar = SideBarWidget();
     return AdminScaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -20,7 +20,7 @@ class AdminUsers extends StatelessWidget {
             color: Colors.white
         ),
       ),
-      sideBar: _sideBar.SideBarMenus(context, AdminUsers.id),
+      sideBar: sideBar.SideBarMenus(context, AdminUsers.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

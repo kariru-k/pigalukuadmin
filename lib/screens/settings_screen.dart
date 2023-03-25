@@ -9,7 +9,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SideBarWidget _sideBar = SideBarWidget();
+    SideBarWidget sideBar = SideBarWidget();
 
     return AdminScaffold(
       backgroundColor: Colors.white,
@@ -20,7 +20,7 @@ class SettingScreen extends StatelessWidget {
             color: Colors.white
         ),
       ),
-      sideBar: _sideBar.SideBarMenus(context, SettingScreen.id),
+      sideBar: sideBar.SideBarMenus(context, SettingScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

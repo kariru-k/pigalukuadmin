@@ -9,7 +9,7 @@ class OrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SideBarWidget _sideBar = SideBarWidget();
+    SideBarWidget sideBar = SideBarWidget();
 
 
 
@@ -23,7 +23,7 @@ class OrderScreen extends StatelessWidget {
             color: Colors.white
         ),
       ),
-      sideBar: _sideBar.SideBarMenus(context, OrderScreen.id),
+      sideBar: sideBar.SideBarMenus(context, OrderScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
