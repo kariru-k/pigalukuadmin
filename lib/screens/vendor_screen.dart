@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:pigalukuadmin/widgets/vendor_datatable_widget.dart';
+import 'package:pigalukuadmin/widgets/vendors/vendor_datatable_widget.dart';
 import '../widgets/sidebar.dart';
 
 class VendorScreen extends StatefulWidget {

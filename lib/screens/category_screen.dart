@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:pigalukuadmin/widgets/category/category_upload_widget.dart';
 
+import '../widgets/category/category_list_widget.dart';
 import '../widgets/sidebar.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -29,12 +31,21 @@ class CategoryScreen extends StatelessWidget {
         child: Container(
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.all(10),
-          child: const Text(
-            'Categories',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 36,
-            ),
+          child: Column(
+            children: const [
+              Text(
+                'Categories',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 36,
+                ),
+              ),
+              Text("Add new Categories and Sub Categories"),
+              Divider(thickness: 5,),
+              CategoryCreateWidget(),
+              Divider(thickness: 5,),
+              CategoryListWidget()
+            ],
           ),
         ),
       ),

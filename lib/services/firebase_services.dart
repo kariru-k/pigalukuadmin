@@ -8,12 +8,14 @@ class FirebaseServices{
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference banners = FirebaseFirestore.instance.collection("slider");
   CollectionReference vendors = FirebaseFirestore.instance.collection("vendors");
-
+  CollectionReference category = FirebaseFirestore.instance.collection("category");
   Future<DocumentSnapshot>getAdminCredentials(id){
     var result = FirebaseFirestore.instance.collection("admin").doc(id).get();
     return result;
   }
 
+
+  //Banner functions
   Future<String>uploadBannerImageToDb(url)async{
     String downloadUrl = await FirebaseStorage.instance.ref(url).getDownloadURL();
     firestore.collection("slider").add({
@@ -26,6 +28,25 @@ class FirebaseServices{
     firestore.collection("slider").doc(id).delete();
   }
 
+  //Vendor Functions
+  updateVendorStatus({id, status, field}) async{
+    vendors.doc(id).update({
+      field : status ? false : true
+    });
+  }
+
+
+  //Category Functions
+  Future<String>uploadCategoryImageToDb(url, catName)async{
+    String downloadUrl = await FirebaseStorage.instance.ref(url).getDownloadURL();
+    category.doc(catName).set({
+      "image" : downloadUrl,
+      "name": catName
+    });
+    return downloadUrl;
+  }
+
+  //Dialog Functions
   Future<void> confirmDeleteDialog({title, message, context, id}) async {
     return showDialog<void>(
       context: context,
@@ -87,11 +108,7 @@ class FirebaseServices{
     );
   }
 
-  updateVendorStatus({id, status, field}) async{
-    vendors.doc(id).update({
-      field : status ? false : true
-    });
-  }
+
 
 
 }

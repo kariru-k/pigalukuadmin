@@ -5,17 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 
-import '../services/firebase_services.dart';
+import '../../services/firebase_services.dart';
 
-class BannerUploadWidget extends StatefulWidget {
-  const BannerUploadWidget({Key? key}) : super(key: key);
+class CategoryCreateWidget extends StatefulWidget {
+  const CategoryCreateWidget({Key? key}) : super(key: key);
 
   @override
-  State<BannerUploadWidget> createState() => _BannerUploadWidgetState();
+  State<CategoryCreateWidget> createState() => _CategoryCreateWidgetState();
 }
 
-class _BannerUploadWidgetState extends State<BannerUploadWidget> {
+class _CategoryCreateWidgetState extends State<CategoryCreateWidget> {
 
+  final fileNameTextController = TextEditingController();
+  final categoryNameTextController = TextEditingController();
+  bool imageSelected = true;
+  FirebaseServices services = FirebaseServices();
   bool visible = false;
 
 
@@ -26,41 +30,53 @@ class _BannerUploadWidgetState extends State<BannerUploadWidget> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
-    final fileNameTextController = TextEditingController();
-    bool imageSelected = true;
-    FirebaseServices services = FirebaseServices();
 
     ProgressDialog progressDialog = ProgressDialog(
       context,
     );
 
-
     void uploadStorage() async {
       Uint8List? imageFile = (await ImagePickerWeb.getImageAsBytes());
       String datetime = DateTime.now().toString();
-      String path = "bannerimage/$datetime";
+      String url = "categoryimage/$datetime";
       setState(() {
         fileNameTextController.text = imageFile.toString();
         imageSelected = false;
       });
       if(imageFile != null){
-        Reference reference = FirebaseStorage.instance.ref().child(path);
-        await reference.putData(imageFile, SettableMetadata(contentType: "image/jpeg"));
-        progressDialog.show();
-        services.uploadBannerImageToDb(path).then((downloadUrl){
-          progressDialog.hide();
-          services.showMyDialog(
-              context: context,
-              title: "New Banner Image",
-              message: "Saved Banner Image"
+        if (categoryNameTextController.text.isEmpty) {
+          fileNameTextController.clear();
+          imageFile = null;
+          return services.showMyDialog(
+            context: context,
+            title: "Add New Category",
+            message: "New Category Name not entered"
           );
-        });
+        }
+        else {
+          Reference reference = FirebaseStorage.instance.ref().child(url);
+          await reference.putData(imageFile, SettableMetadata(contentType: "image/jpeg"));
+          progressDialog.show();
+          try {
+            services.uploadCategoryImageToDb(url.toLowerCase(), categoryNameTextController.text).then((downloadUrl){
+              progressDialog.hide();
+              services.showMyDialog(
+                  context: context,
+                  title: "New Category",
+                  message: "Saved New Category Successfully"
+              );
+            });
+          } on Exception catch (e) {
+            print(e.toString());
+          }
+          categoryNameTextController.clear();
+          fileNameTextController.clear();
+          imageFile = null;
+        }
       }
     }
-
 
 
     return Container(
@@ -76,6 +92,31 @@ class _BannerUploadWidgetState extends State<BannerUploadWidget> {
                 visible: visible,
                 child: Row(
                   children: [
+                    Flexible(
+                      child: SizedBox(
+                        width: 300,
+                        height: 30,
+                        child: TextField(
+                          controller: categoryNameTextController,
+                          decoration: const InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black,
+                                      width: 1
+                                  )
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: "No Category Name Given",
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.only(
+                                  left: 20
+                              )
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10,),
                     Flexible(
                       child: AbsorbPointer(
                         absorbing: true,
@@ -118,7 +159,7 @@ class _BannerUploadWidgetState extends State<BannerUploadWidget> {
                         absorbing: imageSelected,
                         child: ElevatedButton(
                             onPressed: () {},
-                            child: const Text("Save Image")
+                            child: const Text("Save New Category")
                         ),
                       ),
                     ),
@@ -134,7 +175,7 @@ class _BannerUploadWidgetState extends State<BannerUploadWidget> {
                     onPressed: () {
                       showWidget();
                     },
-                    child: const Text("Add Banner")
+                    child: const Text("Add New Category")
                 ),
               ),
             ),

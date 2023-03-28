@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:pigalukuadmin/widgets/banner_upload_widget.dart';
-import 'package:pigalukuadmin/widgets/banner_widget.dart';
-
+import 'package:pigalukuadmin/widgets/banner/banner_upload_widget.dart';
+import '../widgets/banner/banner_widget.dart';
 import '../widgets/sidebar.dart';
 
 class BannerScreen extends StatelessWidget {

@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pigalukuadmin/services/firebase_services.dart';
-import 'package:pigalukuadmin/widgets/vendor_details_box.dart';
+import 'package:pigalukuadmin/widgets/vendors/vendor_details_box.dart';
 
 class VendorDataTable extends StatefulWidget {
   const VendorDataTable({Key? key}) : super(key: key);
