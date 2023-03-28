@@ -18,7 +18,7 @@ class CategoryScreen extends StatelessWidget {
 
 
     return AdminScaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text('Piga Luku Admin Dashboard'),
         backgroundColor: Colors.black45,
