@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 
 import '../../services/firebase_services.dart';
 
