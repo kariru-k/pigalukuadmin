@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pigalukuadmin/screens/admin_users.dart';
 import 'package:pigalukuadmin/screens/category_screen.dart';
+import 'package:pigalukuadmin/screens/delivery_people_screen.dart';
 import 'package:pigalukuadmin/screens/home_screen.dart';
 import 'package:pigalukuadmin/screens/login_screen.dart';
 import 'package:pigalukuadmin/screens/manage_banners.dart';
@@ -51,7 +52,8 @@ class MyApp extends StatelessWidget {
         NotificationScreen.id:(context) => const NotificationScreen(),
         AdminUsers.id:(context) => const AdminUsers(),
         SettingScreen.id:(context) => const SettingScreen(),
-        VendorScreen.id:(context) => const VendorScreen()
+        VendorScreen.id:(context) => const VendorScreen(),
+        DeliveryPeopleScreen.id:(context) => const DeliveryPeopleScreen(),
       },
     );
   }

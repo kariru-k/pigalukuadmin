@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:pigalukuadmin/screens/delivery_people_screen.dart';
 import 'package:pigalukuadmin/screens/vendor_screen.dart';
 
 import '../screens/admin_users.dart';
@@ -51,6 +52,11 @@ class SideBarWidget {
             title: 'Categories',
             route: CategoryScreen.id,
             icon: Icons.category
+        ),
+        AdminMenuItem(
+            title: 'Delivery People',
+            route: DeliveryPeopleScreen.id,
+            icon: Icons.delivery_dining_outlined
         ),
         AdminMenuItem(
           title: 'Orders',

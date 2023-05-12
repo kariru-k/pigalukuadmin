@@ -10,10 +10,6 @@ class OrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SideBarWidget sideBar = SideBarWidget();
-
-
-
-
     return AdminScaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

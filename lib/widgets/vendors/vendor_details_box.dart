@@ -247,9 +247,7 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                   ),
                                   Expanded(
                                     flex: 0,
-                                    child: Container(
-                                      child: Text(snapshot.data!["rating"].toString()),
-                                    ),
+                                    child: Text(snapshot.data!["rating"].toString()),
                                   ),
                                 ],
                               ),
@@ -267,13 +265,11 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                       "Top Picked Store",
                                     ),
                                   ),
-                                  Expanded(
+                                  const Expanded(
                                     flex: 0,
-                                    child: Container(
-                                      child: const Padding(
-                                        padding: EdgeInsets.only(left: 10, right: 10),
-                                        child: Text(":"),
-                                      ),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 10, right: 10),
+                                      child: Text(":"),
                                     ),
                                   ),
                                   Expanded(

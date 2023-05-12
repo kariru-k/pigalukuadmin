@@ -68,8 +68,7 @@ class _CategoryCreateWidgetState extends State<CategoryCreateWidget> {
                   message: "Saved New Category Successfully"
               );
             });
-          } on Exception catch (e) {
-            print(e.toString());
+          } on Exception {
           }
           categoryNameTextController.clear();
           fileNameTextController.clear();

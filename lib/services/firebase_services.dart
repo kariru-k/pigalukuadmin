@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 
 class FirebaseServices{
 
@@ -8,6 +9,7 @@ class FirebaseServices{
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference banners = FirebaseFirestore.instance.collection("slider");
   CollectionReference vendors = FirebaseFirestore.instance.collection("vendors");
+  CollectionReference deliveryPersons = FirebaseFirestore.instance.collection("deliverypersons");
   CollectionReference category = FirebaseFirestore.instance.collection("category");
   Future<DocumentSnapshot>getAdminCredentials(id){
     var result = FirebaseFirestore.instance.collection("admin").doc(id).get();
@@ -106,6 +108,44 @@ class FirebaseServices{
         );
       },
     );
+  }
+
+  updateApprovalStatus(id, bool status, context){
+
+    ProgressDialog progressDialog = ProgressDialog(context);
+
+
+    DocumentReference documentReference = deliveryPersons.doc(id);
+
+    return FirebaseFirestore.instance.runTransaction((transaction) async{
+
+      DocumentSnapshot snapshot = await transaction.get(documentReference);
+
+      if (!snapshot.exists) {
+        throw Exception("User does not exist");
+      }
+
+      progressDialog.show();
+
+      transaction.update(documentReference, {"accVerified": status});
+    })
+        .then((value){
+          progressDialog.hide();
+          showMyDialog(
+              title: "Delivery person status updated", 
+              message: "Successfully updated Delivery person status",
+              context: context
+          );
+        }
+    )
+        .catchError((error) {
+          progressDialog.hide();
+          showMyDialog(
+              title: "Error updating delivery person status",
+              message: "There was an error, please try again",
+              context: context
+          );
+        });
   }
 
 

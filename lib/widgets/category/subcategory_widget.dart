@@ -21,7 +21,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: 300,
         child: Padding(
@@ -45,7 +45,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                   );
                 }
 
-                Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;;
+                Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -61,20 +61,18 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                         const Divider(thickness: 3,),
                       ],
                     ),
-                    Container(
-                      child: Expanded(
-                        child: ListView.builder(
-                          itemBuilder:  (BuildContext context, int index){
-                            return ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              leading: CircleAvatar(
-                                child: Text("${index + 1}"),
-                              ),
-                              title: Text(data["subCat"][index]['name']),
-                            );
-                          },
-                          itemCount: data['subCat'] == null ? 0 : data['subCat'].length,
-                        ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemBuilder:  (BuildContext context, int index){
+                          return ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: CircleAvatar(
+                              child: Text("${index + 1}"),
+                            ),
+                            title: Text(data["subCat"][index]['name']),
+                          );
+                        },
+                        itemCount: data['subCat'] == null ? 0 : data['subCat'].length,
                       ),
                     ),
                     Column(
