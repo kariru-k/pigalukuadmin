@@ -30,9 +30,9 @@ class _VendorScreenState extends State<VendorScreen> {
         child: Container(
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.all(10),
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 "Manage vendors",
                 style: TextStyle(

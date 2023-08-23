@@ -39,7 +39,7 @@ class _NewDeliveryPersonsState extends State<NewDeliveryPersons> {
         return SingleChildScrollView(
           child: DataTable(
               showBottomBorder: true,
-              dataRowHeight: 60,
+              dataRowMaxHeight: 60,
               headingRowColor: MaterialStateProperty.all(Colors.grey[200]),
               columns: const <DataColumn>[
                 DataColumn(label: Expanded(child: Text("Image"))),

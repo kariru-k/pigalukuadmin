@@ -222,6 +222,33 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                               ),
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Expanded(
+                              flex: 0,
+                              child: Row(
+                                children: [
+                                  const Expanded(
+                                    flex: 0,
+                                    child: Text(
+                                      "Owner ID Url",
+                                    ),
+                                  ),
+                                  const Expanded(
+                                    flex: 0,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 10, right: 10),
+                                      child: Text(":"),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 0,
+                                    child: Image.network(snapshot.data!['ownerPicUrl'], height: 300, width: 300,),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Divider(thickness: 2,),
@@ -275,10 +302,10 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                   Expanded(
                                     flex: 0,
                                     child: Container(
-                                      child: snapshot.data!["isTopPicked"] ? Chip(
+                                      child: snapshot.data!["isTopPicked"] ? const Chip(
                                         backgroundColor: Colors.green,
                                         label: Row(
-                                          children: const [
+                                          children: [
                                             Icon(Icons.check, color: Colors.white,),
                                             Text("Top Picked", style: TextStyle(
                                               color: Colors.white
@@ -300,12 +327,12 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                 child: Card(
                                   color: Colors.orangeAccent.withOpacity(.9),
                                   elevation: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10.0),
                                     child: Center(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             CupertinoIcons.money_dollar_circle,
                                             size: 50,
@@ -325,12 +352,12 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                 child: Card(
                                   color: Colors.orangeAccent.withOpacity(.9),
                                   elevation: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10.0),
                                     child: Center(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             CupertinoIcons.cart,
                                             size: 50,
@@ -350,12 +377,12 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                 child: Card(
                                   color: Colors.orangeAccent.withOpacity(.9),
                                   elevation: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10.0),
                                     child: Center(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             Icons.shopping_bag,
                                             size: 50,
@@ -375,12 +402,12 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                 child: Card(
                                   color: Colors.orangeAccent.withOpacity(.9),
                                   elevation: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10.0),
                                     child: Center(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             Icons.grain_outlined,
                                             size: 50,
@@ -400,12 +427,12 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                 child: Card(
                                   color: Colors.orangeAccent.withOpacity(.9),
                                   elevation: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10.0),
                                     child: Center(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             Icons.list_alt_outlined,
                                             size: 50,
@@ -428,19 +455,19 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                 Positioned(
                   top: 10,
                   right: 10,
-                  child: snapshot.data!['accVerified'] ? Chip(
+                  child: snapshot.data!['accVerified'] ? const Chip(
                     backgroundColor: Colors.green,
                     label: Row(
-                      children: const [
+                      children: [
                         Icon(Icons.check, color: Colors.white,),
                         SizedBox(width: 2,),
                         Text("Active", style: TextStyle(color: Colors.white),)
                       ],
                     ),
-                  ) : Chip(
+                  ) : const Chip(
                     backgroundColor: Colors.red,
                     label: Row(
-                      children: const [
+                      children: [
                         Icon(Icons.remove_circle, color: Colors.white,),
                         SizedBox(width: 2,),
                         Text("Inactive", style: TextStyle(color: Colors.white),)

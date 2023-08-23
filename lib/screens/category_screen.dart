@@ -31,9 +31,9 @@ class CategoryScreen extends StatelessWidget {
         child: Container(
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.all(10),
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 'Categories',
                 style: TextStyle(

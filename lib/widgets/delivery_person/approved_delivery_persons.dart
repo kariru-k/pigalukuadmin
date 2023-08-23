@@ -38,7 +38,7 @@ class _ApprovedDeliveryPersonsState extends State<ApprovedDeliveryPersons> {
         return SingleChildScrollView(
           child: DataTable(
               showBottomBorder: true,
-              dataRowHeight: 100,
+              dataRowMaxHeight: 100,
               headingRowColor: MaterialStateProperty.all(Colors.grey[200]),
               columns: const <DataColumn>[
                 DataColumn(label: Expanded(child: Text("Image"))),

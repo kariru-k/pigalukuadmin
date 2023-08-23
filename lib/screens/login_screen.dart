@@ -19,13 +19,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   static final configurations = Configurations();
   final Future<FirebaseApp> _initialization = Firebase.initializeApp(
-      options: FirebaseOptions(
-          apiKey: configurations.apiKey,
-          appId: configurations.appId,
-          messagingSenderId: configurations.messagingSenderId,
-          storageBucket: configurations.storageBucket,
-          projectId: configurations.projectId,
-      )
+      options: configurations.options
   );
   final _formKey = GlobalKey<FormState>();
   final FirebaseServices _services = FirebaseServices();

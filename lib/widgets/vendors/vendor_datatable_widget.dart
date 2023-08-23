@@ -131,7 +131,7 @@ class _VendorDataTableState extends State<VendorDataTable> {
                   ],
                   rows: _vendorDetailsRows(snapshot.data, _services) as List<DataRow>,
                   showBottomBorder: true,
-                  dataRowHeight: 80,
+                  dataRowMaxHeight: 80,
                   headingRowColor: MaterialStateProperty.all(Colors.grey[200]),
 
                 ),
@@ -185,9 +185,9 @@ class _VendorDataTableState extends State<VendorDataTable> {
             DataCell(
               Text(document["shopName"])
             ),
-            DataCell(
+            const DataCell(
               Row(
-                children: const [
+                children: [
                   Icon(Icons.star),
                   Text("5.0")
                 ],
